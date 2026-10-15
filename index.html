@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFM — La Ferme de Diégonefla | Logiciel de Gestion Intégrée</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-icon">DFM</div>
+            <div class="brand-text">
+                <h1>Ferme Diégonefla</h1>
+                <p>Élevage Avicole & Cunicole</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section-title">Principal</div>
+            <a class="nav-item active" data-view="dashboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                Tableau de bord
+            </a>
+
+            <div class="nav-section-title">Gestion Technique Élevage</div>
+            <a class="nav-item" data-view="volailles" data-module="volailles">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 4s4-2 4-4a4 4 0 0 0-4-4z"></path><path d="M18 10c0 4.42-3.58 8-8 8a7.93 7.93 0 0 1-5-1.78"></path><path d="M6 18c0 2 2 4 6 4s6-2 6-4"></path></svg>
+                Volailles (Poulets)
+                <span class="nav-badge" id="badge-poulets">...</span>
+            </a>
+            <a class="nav-item" data-view="lapins" data-module="lapins">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 16v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"></path><path d="M14 7V3.5a1.5 1.5 0 0 1 3 0V7"></path><path d="M18 7V4.5a1.5 1.5 0 0 1 3 0V7"></path></svg>
+                Lapins (Cunicole)
+                <span class="nav-badge" id="badge-lapins">...</span>
+            </a>
+            <a class="nav-item" data-view="oeufs" data-module="oeufs">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="13" rx="7" ry="9"></ellipse></svg>
+                Production d’Œufs
+                <span class="nav-badge" id="badge-oeufs">...</span>
+            </a>
+            <a class="nav-item" data-view="incubation" data-module="incubation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                Incubation (Couveuse)
+            </a>
+            <a class="nav-item" data-view="sante" data-module="sante">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                Santé & Prophylaxie
+            </a>
+
+            <div class="nav-section-title">Alimentation & Logistique</div>
+            <a class="nav-item" data-view="aliments" data-module="aliments">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                Aliments
+            </a>
+            <a class="nav-item" data-view="formules" data-module="formules">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                Formules Alimentaires
+            </a>
+            <a class="nav-item" data-view="stocks" data-module="stocks">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+                Stocks Consolidés
+            </a>
+
+            <div class="nav-section-title">Commercial & Finances</div>
+            <a class="nav-item" data-view="clients" data-module="clients">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                Clients & Créances
+            </a>
+            <a class="nav-item" data-view="ventes" data-module="ventes">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Ventes & Facturation
+            </a>
+            <a class="nav-item" data-view="depenses" data-module="depenses">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                Dépenses & Achats
+            </a>
+
+            <div class="nav-section-title">Administration</div>
+            <a class="nav-item" data-view="utilisateurs" data-module="users">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Utilisateurs & Droits
+            </a>
+            <a class="nav-item" data-view="rapports" data-module="rapports">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Rapports & Paramètres
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span>DFM v1.0 — Diégonefla</span>
+            <span style="color: #4ade80;">● En ligne</span>
+        </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="main-wrapper">
+        <!-- TOP BAR -->
+        <header class="top-bar">
+            <div class="top-left">
+                <button class="mobile-toggle" id="mobile-menu-btn">☰</button>
+                <div class="page-title-wrap">
+                    <h2 id="current-view-title">Tableau de bord</h2>
+                    <p id="current-view-desc">Vue d'ensemble en temps réel des activités de la ferme</p>
+                </div>
+            </div>
+
+            <div class="top-right">
+                <!-- RÔLE SWITCHER POUR DÉMONSTRATION DE LA MATRICE DE DROITS (Section 6 CDC) -->
+                <div class="role-switcher-box" title="Changer de profil pour tester la matrice des droits du CDC">
+                    <label for="role-select">Profil actif :</label>
+                    <select id="role-select" class="role-select">
+                        <option value="admin">Administrateur (Tout accès)</option>
+                        <option value="technique">Resp. Technique (Élevage / Santé)</option>
+                        <option value="commercial">Resp. Commercial (Ventes / Clients)</option>
+                        <option value="comptable">Comptable (Finances / Dépenses)</option>
+                        <option value="consultation">Consultation (Lecture seule)</option>
+                    </select>
+                </div>
+
+                <button class="btn-header" id="btn-quick-excel" title="Télécharger le rapport Excel de gestion">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Export Excel
+                </button>
+
+                <button class="btn-header btn-primary" id="btn-quick-sale">
+                    + Nouvelle Vente
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTENT AREA -->
+        <main class="content-area">
+            
+            <!-- ALERT BANNER CONTAINER (AUTOMATIC ALERTS) -->
+            <div id="alerts-container" class="alerts-container"></div>
+
+            <!-- ================= VIEW 1: TABLEAU DE BORD ================= -->
+            <section id="view-dashboard" class="app-view active">
+                
+                <!-- 10 KPIS CARDS (CONFORME CAHIER DES CHARGES SECTION 3.2 & 12.2) -->
+                <div class="kpi-grid">
+                    <!-- 1. Poulets -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Poulets (Volailles)</span>
+                            <div class="kpi-icon-badge" style="color: #15803d; background: #dcfce7;">🐔</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-poulets">0</div>
+                        <div class="kpi-sub positive">Cheptel avicole actif</div>
+                    </div>
+
+                    <!-- 2. Lapins -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Lapins (Cunicole)</span>
+                            <div class="kpi-icon-badge" style="color: #0369a1; background: #e0f2fe;">🐇</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-lapins">0</div>
+                        <div class="kpi-sub positive">Engraissement & reproducteurs</div>
+                    </div>
+
+                    <!-- 3. Œufs disponibles -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Œufs Disponibles</span>
+                            <div class="kpi-icon-badge" style="color: #b45309; background: #fef3c7;">🥚</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-oeufs">0</div>
+                        <div class="kpi-sub" id="kpi-oeufs-plateaux">0 plateaux de 30</div>
+                    </div>
+
+                    <!-- 4. Lots Actifs -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Lots Actifs</span>
+                            <div class="kpi-icon-badge" style="color: #4f46e5; background: #ede9fe;">📦</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-lots">0</div>
+                        <div class="kpi-sub">Bâtiments & batteries occupés</div>
+                    </div>
+
+                    <!-- 5. Reproducteurs -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Reproducteurs</span>
+                            <div class="kpi-icon-badge" style="color: #be185d; background: #fce7f3;">🧬</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-reproducteurs">0</div>
+                        <div class="kpi-sub">Mâles & lapines mères</div>
+                    </div>
+
+                    <!-- 6. Stock d'Aliment -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Stock Aliments</span>
+                            <div class="kpi-icon-badge" style="color: #c2410c; background: #ffedd5;">🌾</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-aliment">0 kg</div>
+                        <div class="kpi-sub">Rations & matières premières</div>
+                    </div>
+
+                    <!-- 7. Chiffre d'Affaires du Mois -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">CA du Mois</span>
+                            <div class="kpi-icon-badge" style="color: #15803d; background: #dcfce7;">💰</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-ca">0 FCFA</div>
+                        <div class="kpi-sub positive">Ventes enregistrées ce mois</div>
+                    </div>
+
+                    <!-- 8. Dépenses du Mois -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Dépenses du Mois</span>
+                            <div class="kpi-icon-badge" style="color: #dc2626; background: #fee2e2;">📉</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-depenses">0 FCFA</div>
+                        <div class="kpi-sub">Charges & approvisionnements</div>
+                    </div>
+
+                    <!-- 9. Bénéfice du Mois (Highlight) -->
+                    <div class="kpi-card highlight">
+                        <div class="kpi-header">
+                            <span class="kpi-title" style="color: #14532d;">Bénéfice Net</span>
+                            <div class="kpi-icon-badge" style="color: #15803d; background: #ffffff;">📈</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-benefice" style="color: #15803d;">0 FCFA</div>
+                        <div class="kpi-sub positive">Marge nette d'exploitation</div>
+                    </div>
+
+                    <!-- 10. Créances Clients -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Créances Clients</span>
+                            <div class="kpi-icon-badge" style="color: #b45309; background: #fef3c7;">⏳</div>
+                        </div>
+                        <div class="kpi-value" id="kpi-creances">0 FCFA</div>
+                        <div class="kpi-sub warning">À recouvrer sous échéance</div>
+                    </div>
+                </div>
+
+                <!-- CHARTS ROW (ÉVOLUTION VENTES vs DÉPENSES + RÉPARTITION) -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="card-header-flex">
+                            <div class="card-title">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                                Évolution Financière : Ventes vs Dépenses (FCFA)
+                            </div>
+                            <span class="badge badge-neutral">Semestre en cours</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="canvas-evolution"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header-flex">
+                            <div class="card-title">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 10 10H12z"></path></svg>
+                                Répartition des Ventes par Produit
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="canvas-produits"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RECENT TRANSACTIONS & ACTIVITY TABLE -->
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                            Dernières Ventes Enregistrées
+                        </div>
+                        <button class="btn btn-sm btn-secondary" onclick="app.showView('ventes')">Voir toutes les ventes →</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="dashboard-recent-sales">
+                            <thead>
+                                <tr>
+                                    <th>N° Facture</th>
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Montant Net</th>
+                                    <th>Encaissé</th>
+                                    <th>Reste Dû</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 2: VOLAILLES (POULETS) ================= -->
+            <section id="view-volailles" class="app-view">
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Lots de Volailles & Suivi de Cheptel</div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouveau-lot-volaille')">+ Nouveau Lot Volaille</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-volailles">
+                            <thead>
+                                <tr>
+                                    <th>Code Lot</th>
+                                    <th>Désignation & Souche</th>
+                                    <th>Type</th>
+                                    <th>Date Entrée</th>
+                                    <th>Eff. Initial</th>
+                                    <th>Eff. Actuel</th>
+                                    <th>Poids Moyen</th>
+                                    <th>Bâtiment</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 3: LAPINS (CUNICOLE) ================= -->
+            <section id="view-lapins" class="app-view">
+                <div class="nav-tabs">
+                    <button class="tab-btn active" onclick="app.switchRabbitTab('reproducteurs')">Reproducteurs Mâles & Femelles</button>
+                    <button class="tab-btn" onclick="app.switchRabbitTab('reproductions')">Saillies, Gestations & Portées</button>
+                    <button class="tab-btn" onclick="app.switchRabbitTab('lots')">Lots d'Engraissement & Sevrage</button>
+                </div>
+
+                <!-- Onglet 1 : Reproducteurs -->
+                <div id="tab-lapins-reproducteurs">
+                    <div class="section-card">
+                        <div class="card-header-flex">
+                            <div class="card-title">Cheptel de Reproducteurs Cunicoles</div>
+                            <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouveau-reproducteur')">+ Nouveau Reproducteur</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="table-reproducteurs">
+                                <thead>
+                                    <tr>
+                                        <th>Tatouage</th>
+                                        <th>Nom</th>
+                                        <th>Race</th>
+                                        <th>Sexe</th>
+                                        <th>Cage</th>
+                                        <th>Date Entrée</th>
+                                        <th>Portées</th>
+                                        <th>Statut</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Onglet 2 : Saillies & Gestations -->
+                <div id="tab-lapins-reproductions" style="display: none;">
+                    <div class="section-card">
+                        <div class="card-header-flex">
+                            <div class="card-title">Suivi des Saillies, Gestations & Sevrages</div>
+                            <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvelle-saillie')">+ Enregistrer une Saillie</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="table-reproductions">
+                                <thead>
+                                    <tr>
+                                        <th>Femelle</th>
+                                        <th>Mâle</th>
+                                        <th>Date Saillie</th>
+                                        <th>Mise Bas Prévue</th>
+                                        <th>Nés Vivants</th>
+                                        <th>Morts-nés</th>
+                                        <th>Sevrés</th>
+                                        <th>Statut</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Onglet 3 : Lots d'Engraissement -->
+                <div id="tab-lapins-lots" style="display: none;">
+                    <div class="section-card">
+                        <div class="card-header-flex">
+                            <div class="card-title">Batteries & Cages d'Engraissement</div>
+                            <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouveau-lot-lapin')">+ Nouveau Lot Engraissement</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="table-lots-lapins">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Désignation</th>
+                                        <th>Race</th>
+                                        <th>Type</th>
+                                        <th>Effectif</th>
+                                        <th>Emplacement</th>
+                                        <th>Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 4: ŒUFS ================= -->
+            <section id="view-oeufs" class="app-view">
+                <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="kpi-card highlight">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Stock Œufs Frais</span>
+                            <div class="kpi-icon-badge">🥚</div>
+                        </div>
+                        <div class="kpi-value" id="oeufs-view-total">0</div>
+                        <div class="kpi-sub positive" id="oeufs-view-plateaux">0 plateaux de 30</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Valeur Marchande Estimée</span>
+                            <div class="kpi-icon-badge">💰</div>
+                        </div>
+                        <div class="kpi-value" id="oeufs-view-valeur">0 FCFA</div>
+                        <div class="kpi-sub">Base 2 200 FCFA / plateau</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Collecte Journalière</span>
+                            <div class="kpi-icon-badge">📊</div>
+                        </div>
+                        <div class="kpi-value" id="oeufs-view-jour">~710</div>
+                        <div class="kpi-sub positive">Taux moyen de ponte 89%</div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Enregistrement des Pontes Quotidiennes</div>
+                        <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvelle-ponte')">+ Enregistrer Ramassage</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-pontes">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Lot Pondeuse</th>
+                                    <th>Total Œufs</th>
+                                    <th>Plateaux (30)</th>
+                                    <th>Gros Calibre</th>
+                                    <th>Moyen Calibre</th>
+                                    <th>Petit Calibre</th>
+                                    <th>Casses</th>
+                                    <th>Observations</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 5: INCUBATION ================= -->
+            <section id="view-incubation" class="app-view">
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Sessions d'Incubation & Couveuses</div>
+                        <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvelle-incubation')">+ Lancer une Incubation</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-incubations">
+                            <thead>
+                                <tr>
+                                    <th>Session</th>
+                                    <th>Date Mise</th>
+                                    <th>Œufs Incubés</th>
+                                    <th>Couveuse</th>
+                                    <th>Date Éclosion Prévue</th>
+                                    <th>Œufs Clairs</th>
+                                    <th>Poussins Éclos</th>
+                                    <th>Taux Éclosion</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 6: ALIMENTS ================= -->
+            <section id="view-aliments" class="app-view">
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Catalogue des Aliments & Stocks (kg)</div>
+                        <div class="card-actions">
+                            <button class="btn btn-secondary btn-ecriture" onclick="app.openModal('modal-mouvement-aliment')">Distribution / Mouvement</button>
+                            <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvel-aliment')">+ Ajouter un Aliment</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-aliments">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Nom de l'Aliment</th>
+                                    <th>Espèce / Catégorie</th>
+                                    <th>Stock Disponible (kg)</th>
+                                    <th>Seuil Alerte</th>
+                                    <th>Prix Unitaire (FCFA/kg)</th>
+                                    <th>Emplacement</th>
+                                    <th>Statut Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 7: FORMULES ALIMENTAIRES ================= -->
+            <section id="view-formules" class="app-view">
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Formules de Fabrication Alimentaire & Coûts de Revient</div>
+                        <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvelle-formule')">+ Créer une Formule</button>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                        Permet de définir les ratios de mélange d'ingrédients locaux (maïs, soja, son de blé, poisson...) et calcule automatiquement le prix de revient au kilogramme et par sac de 50 kg.
+                    </p>
+                    <div id="formules-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1rem;"></div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 8: STOCKS CONSOLIDÉS ================= -->
+            <section id="view-stocks" class="app-view">
+                <div class="kpi-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 1.25rem;">
+                    <div class="kpi-card highlight">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Valeur Totale du Stock</span>
+                            <div class="kpi-icon-badge">📦</div>
+                        </div>
+                        <div class="kpi-value" id="stock-valeur-totale">0 FCFA</div>
+                        <div class="kpi-sub positive">Aliments, Œufs, Matériel & Médicaments</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Articles Référencés</span>
+                            <div class="kpi-icon-badge">📑</div>
+                        </div>
+                        <div class="kpi-value" id="stock-nb-articles">0</div>
+                        <div class="kpi-sub">Dans les magasins de Diégonefla</div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Inventaire Consolidé</div>
+                        <div class="card-actions">
+                            <button class="btn btn-secondary btn-ecriture" onclick="app.openModal('modal-mouvement-stock')">Mouvement Entrée/Sortie</button>
+                            <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvel-article')">+ Nouvel Article</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-stocks">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Désignation</th>
+                                    <th>Catégorie</th>
+                                    <th>Stock</th>
+                                    <th>Unité</th>
+                                    <th>Seuil Alerte</th>
+                                    <th>Prix Unitaire</th>
+                                    <th>Valeur Totale</th>
+                                    <th>Emplacement</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 9: SANTÉ & PROPHYLAXIE ================= -->
+            <section id="view-sante" class="app-view">
+                <div class="nav-tabs">
+                    <button class="tab-btn active" onclick="app.switchSanteTab('interventions')">Journal des Actes Vétérinaires</button>
+                    <button class="tab-btn" onclick="app.switchSanteTab('prophylaxie')">Programme Prophylactique Officiel</button>
+                </div>
+
+                <div id="tab-sante-interventions">
+                    <div class="section-card">
+                        <div class="card-header-flex">
+                            <div class="card-title">Traitements, Vaccinations & Soins Administrés</div>
+                            <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvelle-intervention-sante')">+ Enregistrer un Acte Sanitaire</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="table-sante">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Espèce</th>
+                                        <th>Lot Concerné</th>
+                                        <th>Type d'Acte</th>
+                                        <th>Produit Administré</th>
+                                        <th>Posologie</th>
+                                        <th>Délai d'Attente</th>
+                                        <th>Intervenant</th>
+                                        <th>Observations</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-sante-prophylaxie" style="display: none;">
+                    <div class="section-card">
+                        <div class="card-header-flex">
+                            <div class="card-title">Calendrier Sanitaire Prophylactique (Volailles & Lapins)</div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="table-prophylaxie">
+                                <thead>
+                                    <tr>
+                                        <th>Espèce</th>
+                                        <th>Âge / Stade Recommandé</th>
+                                        <th>Vaccin / Intervention</th>
+                                        <th>Produit Utilisé</th>
+                                        <th>Mode d'Administration</th>
+                                        <th>État</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 10: CLIENTS & CRÉANCES ================= -->
+            <section id="view-clients" class="app-view">
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Répertoire des Clients & Suivi des Créances</div>
+                        <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouveau-client')">+ Nouveau Client</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-clients">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Nom / Entreprise</th>
+                                    <th>Type</th>
+                                    <th>Téléphone</th>
+                                    <th>Ville</th>
+                                    <th>Solde Créance (FCFA)</th>
+                                    <th>Limite Crédit</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 11: VENTES & FACTURATION ================= -->
+            <section id="view-ventes" class="app-view">
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Journal des Ventes & Émission de Factures</div>
+                        <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvelle-vente')">+ Émettre une Vente</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-ventes">
+                            <thead>
+                                <tr>
+                                    <th>N° Facture</th>
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Montant Net (FCFA)</th>
+                                    <th>Réglé (FCFA)</th>
+                                    <th>Solde Dû (FCFA)</th>
+                                    <th>Mode</th>
+                                    <th>Statut Règlement</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 12: DÉPENSES & ACHATS ================= -->
+            <section id="view-depenses" class="app-view">
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Registre des Dépenses & Charges d'Exploitation</div>
+                        <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvelle-depense')">+ Enregistrer une Dépense</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-depenses">
+                            <thead>
+                                <tr>
+                                    <th>Référence</th>
+                                    <th>Date</th>
+                                    <th>Catégorie</th>
+                                    <th>Libellé / Objet</th>
+                                    <th>Fournisseur</th>
+                                    <th>Montant (FCFA)</th>
+                                    <th>Mode Paiement</th>
+                                    <th>N° Pièce</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 13: UTILISATEURS & DROITS ================= -->
+            <section id="view-utilisateurs" class="app-view">
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Comptes Utilisateurs & Attribution des Rôles (Section 6)</div>
+                        <button class="btn btn-primary btn-ecriture" onclick="app.openModal('modal-nouvel-utilisateur')">+ Créer un Utilisateur</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-utilisateurs">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nom Complet</th>
+                                    <th>Identifiant</th>
+                                    <th>Rôle Système</th>
+                                    <th>Email</th>
+                                    <th>Téléphone</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- JOURNAL D'AUDIT -->
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Journal d'Audit & Traçabilité des Actions</div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="table-audit">
+                            <thead>
+                                <tr>
+                                    <th>Date & Heure</th>
+                                    <th>Utilisateur</th>
+                                    <th>Module</th>
+                                    <th>Action</th>
+                                    <th>Détails</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 14: RAPPORTS & PARAMÈTRES ================= -->
+            <section id="view-rapports" class="app-view">
+                <div class="charts-grid" style="grid-template-columns: 1fr 1fr;">
+                    <!-- Carte Rapports & Exports -->
+                    <div class="section-card">
+                        <div class="card-title" style="margin-bottom: 1rem;">Génération de Rapports Périodiques</div>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
+                            Conformément à la section 3.14 du cahier des charges, exportez instantanément les données consolidées en feuilles de calcul professionnelles formatées.
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <a href="/api/rapports/excel" class="btn btn-primary" style="justify-content: flex-start;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                Télécharger le Rapport Général Excel (.xlsx)
+                            </a>
+                            <button class="btn btn-secondary" onclick="window.print()" style="justify-content: flex-start;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                                Imprimer le Tableau de Bord (Version A4)
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Carte Sauvegarde & Données -->
+                    <div class="section-card">
+                        <div class="card-title" style="margin-bottom: 1rem;">Sauvegarde & Sécurité des Données</div>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
+                            Exportez l'intégralité de la base de données de La Ferme de Diégonefla en un clic pour une conservation sécurisée hors-ligne.
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <a href="/api/backup" download="sauvegarde_diegonefla.json" class="btn btn-secondary" style="justify-content: flex-start;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                                Exporter la Sauvegarde Complète (JSON)
+                            </a>
+                            <button class="btn btn-outline-primary" onclick="app.resetDemoData()" style="justify-content: flex-start;">
+                                ↻ Réinitialiser avec les Données de Test de Diégonefla
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulaire Paramètres Généraux -->
+                <div class="section-card">
+                    <div class="card-header-flex">
+                        <div class="card-title">Paramètres Généraux de l'Exploitation</div>
+                        <button class="btn btn-primary" onclick="app.saveParametres()">Enregistrer les Modifications</button>
+                    </div>
+                    <form id="form-parametres">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Dénomination de la Ferme</label>
+                                <input type="text" class="form-control" name="ferme_nom" value="La Ferme de Diégonefla">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Localisation / Adresse</label>
+                                <input type="text" class="form-control" name="ferme_adresse" value="Route de Gagnoa, Diégonefla, Côte d'Ivoire">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Téléphone de contact</label>
+                                <input type="text" class="form-control" name="ferme_telephone" value="+225 07 58 12 34 56">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Devise d'exploitation</label>
+                                <input type="text" class="form-control" name="devise" value="FCFA" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Seuil Minimal d'Alerte Aliments (kg)</label>
+                                <input type="number" class="form-control" name="seuil_stock_aliment_kg" value="200">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Taux Critique de Mortalité (%)</label>
+                                <input type="number" step="0.1" class="form-control" name="seuil_mortalite_pct" value="3.0">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ================= MODALS INTERACTIFS ================= -->
+
+    <!-- MODAL NOUVELLE VENTE -->
+    <div class="modal-overlay" id="modal-nouvelle-vente">
+        <div class="modal-box modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">Enregistrement d'une Vente / Facture</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouvelle-vente')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouvelle-vente">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Client</label>
+                            <select class="form-control" id="vente-client-select" onchange="app.onVenteClientChange()">
+                                <option value="">-- Client Comptoir (Passage) --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nom affiché sur la facture</label>
+                            <input type="text" class="form-control" id="vente-client-nom" value="Client Comptoir" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date de vente</label>
+                            <input type="date" class="form-control" id="vente-date" required>
+                        </div>
+                    </div>
+
+                    <div style="margin: 1rem 0; border-top: 1px solid var(--border); padding-top: 1rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <strong>Articles Vendus</strong>
+                            <button type="button" class="btn btn-sm btn-secondary" onclick="app.addVenteLine()">+ Ajouter une ligne</button>
+                        </div>
+                        <div id="vente-lignes-container"></div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Remise commerciale (FCFA)</label>
+                            <input type="number" class="form-control" id="vente-remise" value="0" oninput="app.calcVenteTotals()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mode de règlement</label>
+                            <select class="form-control" id="vente-mode-paiement">
+                                <option value="especes">Espèces</option>
+                                <option value="mobile_money">Mobile Money (Wave / Orange / MTN)</option>
+                                <option value="virement">Virement Bancaire</option>
+                                <option value="cheque">Chèque</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Montant perçu / réglé (FCFA)</label>
+                            <input type="number" class="form-control" id="vente-regle" value="0" oninput="app.calcVenteTotals()">
+                        </div>
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border); margin-top: 0.5rem; display: flex; justify-content: space-between;">
+                        <div>
+                            <span style="color: var(--text-muted); font-size: 0.8rem;">Sous-total Brut : </span>
+                            <strong id="vente-total-brut">0 FCFA</strong>
+                        </div>
+                        <div>
+                            <span style="color: var(--text-muted); font-size: 0.8rem;">Net à Payer : </span>
+                            <strong id="vente-total-net" style="color: var(--primary); font-size: 1.1rem;">0 FCFA</strong>
+                        </div>
+                        <div>
+                            <span style="color: var(--text-muted); font-size: 0.8rem;">Reste Dû (Créance) : </span>
+                            <strong id="vente-total-restant" style="color: var(--danger);">0 FCFA</strong>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouvelle-vente')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouvelleVente()">Valider & Émettre Facture</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FACTURE IMPRIMABLE -->
+    <div class="modal-overlay" id="modal-facture-viewer">
+        <div class="modal-box modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">Facture / Reçu Officiel</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-facture-viewer')">&times;</button>
+            </div>
+            <div class="modal-body" id="facture-printable-area">
+                <!-- Template Facture -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-facture-viewer')">Fermer</button>
+                <button class="btn btn-primary" onclick="window.print()">Imprimer la Facture</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVEAU LOT VOLAILLE -->
+    <div class="modal-overlay" id="modal-nouveau-lot-volaille">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Nouveau Lot de Volailles</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouveau-lot-volaille')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouveau-lot-volaille">
+                    <div class="form-group">
+                        <label class="form-label">Désignation du Lot</label>
+                        <input type="text" class="form-control" name="nom" placeholder="Ex: Poulets de chair Cobb 500 — Bande E" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Souche</label>
+                            <select class="form-control" name="souche">
+                                <option value="Cobb 500 (Chair)">Cobb 500 (Chair)</option>
+                                <option value="Ross 308 (Chair)">Ross 308 (Chair)</option>
+                                <option value="Isa Brown (Pondeuse)">Isa Brown (Pondeuse)</option>
+                                <option value="Lohmann Brown (Pondeuse)">Lohmann Brown (Pondeuse)</option>
+                                <option value="Goliath (Fermier)">Goliath (Fermier)</option>
+                                <option value="Poulet Local Bicyclette">Poulet Local Bicyclette</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Type de Production</label>
+                            <select class="form-control" name="type_production">
+                                <option value="chair">Poulet de chair (Engraissement)</option>
+                                <option value="ponte">Pondeuse (Production d'œufs)</option>
+                                <option value="mixte">Reproduction / Fermier</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Effectif Initial (Nombre de sujets)</label>
+                            <input type="number" class="form-control" name="effectif_initial" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date d'Entrée en Élevage</label>
+                            <input type="date" class="form-control" name="date_entree" id="lot-volaille-date-entree" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Bâtiment / Enclos</label>
+                            <input type="text" class="form-control" name="batiment" placeholder="Ex: Bâtiment 1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Poids Moyen Initial (grammes)</label>
+                            <input type="number" class="form-control" name="poids_moyen_g" value="42">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouveau-lot-volaille')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouveauLotVolaille()">Créer le Lot</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ENREGISTRER PESÉE -->
+    <div class="modal-overlay" id="modal-pesee-volaille">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Enregistrement Pesée de Contrôle</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-pesee-volaille')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-pesee-volaille">
+                    <input type="hidden" id="pesee-lot-id">
+                    <div class="form-group">
+                        <label class="form-label">Lot de Volailles</label>
+                        <input type="text" class="form-control" id="pesee-lot-nom" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Poids Moyen Constaté (grammes)</label>
+                            <input type="number" class="form-control" id="pesee-poids" placeholder="Ex: 1450" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date de la Pesée</label>
+                            <input type="date" class="form-control" id="pesee-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Observations</label>
+                        <input type="text" class="form-control" id="pesee-notes" placeholder="Ex: Homogénéité satisfaisante">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-pesee-volaille')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitPesee()">Enregistrer la Pesée</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ENREGISTRER MORTALITÉ -->
+    <div class="modal-overlay" id="modal-mortalite-volaille">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Enregistrement Mortalité Volaille</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-mortalite-volaille')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-mortalite-volaille">
+                    <input type="hidden" id="mortalite-lot-id">
+                    <div class="form-group">
+                        <label class="form-label">Lot concerné</label>
+                        <input type="text" class="form-control" id="mortalite-lot-nom" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Nombre de Pertes</label>
+                            <input type="number" class="form-control" id="mortalite-qte" min="1" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" id="mortalite-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cause suspectée</label>
+                        <select class="form-control" id="mortalite-cause">
+                            <option value="Faiblesse naturelle / tri">Faiblesse naturelle / tri</option>
+                            <option value="Coup de chaleur / Étouffement">Coup de chaleur / Étouffement</option>
+                            <option value="Problème respiratoire">Problème respiratoire</option>
+                            <option value="Piétinement litière">Piétinement litière</option>
+                            <option value="Prolapsus / Pique">Prolapsus / Pique</option>
+                            <option value="Autre / À autopsier">Autre / À autopsier</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-mortalite-volaille')">Annuler</button>
+                <button class="btn btn-danger" onclick="app.submitMortalite()">Valider la Perte</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVELLE PONTE -->
+    <div class="modal-overlay" id="modal-nouvelle-ponte">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Enregistrement de la Collecte d'Œufs</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouvelle-ponte')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouvelle-ponte">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Lot Pondeuse</label>
+                            <select class="form-control" id="ponte-lot-select"></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date du Ramassage</label>
+                            <input type="date" class="form-control" id="ponte-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Total Œufs Ramassés</label>
+                        <input type="number" class="form-control" id="ponte-total" min="1" required oninput="app.calcEggBreakdown()">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Gros Calibre</label>
+                            <input type="number" class="form-control" id="ponte-gros" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Moyen Calibre</label>
+                            <input type="number" class="form-control" id="ponte-moyen" value="0">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Petit Calibre</label>
+                            <input type="number" class="form-control" id="ponte-petit" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Œufs Cassés / Fêlés (Pertes)</label>
+                            <input type="number" class="form-control" id="ponte-casses" value="0">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouvelle-ponte')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitPonte()">Enregistrer la Collecte</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVELLE INCUBATION -->
+    <div class="modal-overlay" id="modal-nouvelle-incubation">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Mise en Incubation (Couveuse)</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouvelle-incubation')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouvelle-incubation">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Nombre d'Œufs Incubés</label>
+                            <input type="number" class="form-control" name="nb_oeufs_incubes" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date de Mise en Couveuse</label>
+                            <input type="date" class="form-control" name="date_mise" id="incub-date-mise" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Couveuse / Incubateur</label>
+                        <input type="text" class="form-control" name="incubateur_nom" value="Couveuse Automatique Victoria 1000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Lot Source (Géniteurs)</label>
+                        <select class="form-control" name="lot_source_id" id="incub-lot-source"></select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouvelle-incubation')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitIncubation()">Lancer l'Incubation</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CLÔTURE ÉCLOSION -->
+    <div class="modal-overlay" id="modal-cloture-eclosion">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Clôture Éclosion & Création Nouveau Lot</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-cloture-eclosion')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-cloture-eclosion">
+                    <input type="hidden" id="eclosion-incub-id">
+                    <div class="form-group">
+                        <label class="form-label">Session</label>
+                        <input type="text" class="form-control" id="eclosion-code-session" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Poussins Éclos Total</label>
+                            <input type="number" class="form-control" id="eclosion-nb-total" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Poussins Vigoureux Valides</label>
+                            <input type="number" class="form-control" id="eclosion-nb-vigoureux" min="0" required>
+                        </div>
+                    </div>
+                    <div style="background: #f0fdf4; border: 1px solid #86efac; padding: 0.75rem; border-radius: var(--radius-sm); margin-top: 0.75rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" id="eclosion-creer-lot" checked>
+                            <strong>Créer automatiquement un nouveau lot de volailles avec ces poussins</strong>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-cloture-eclosion')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitClotureEclosion()">Valider l'Éclosion</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVELLE DÉPENSE -->
+    <div class="modal-overlay" id="modal-nouvelle-depense">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Enregistrement d'une Dépense / Achat</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouvelle-depense')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouvelle-depense">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Catégorie de charge</label>
+                            <select class="form-control" name="categorie">
+                                <option value="aliments">Aliments & Matières Premières</option>
+                                <option value="sante">Santé Animale & Vétérinaire</option>
+                                <option value="salaires">Salaires & Main d'Œuvre</option>
+                                <option value="energie">Énergie & Carburant</option>
+                                <option value="equipement">Équipement & Abreuvoirs</option>
+                                <option value="entretien">Entretien Bâtiments & Désinfection</option>
+                                <option value="divers">Charges Diverses</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" name="date_depense" id="depense-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Libellé / Objet de la dépense</label>
+                        <input type="text" class="form-control" name="libelle" placeholder="Ex: Achat maïs grain 2 tonnes" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Fournisseur / Bénéficiaire</label>
+                            <input type="text" class="form-control" name="fournisseur" placeholder="Ex: Coopérative Gagnoa">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Montant (FCFA)</label>
+                            <input type="number" class="form-control" name="montant" min="1" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Mode de paiement</label>
+                            <select class="form-control" name="mode_paiement">
+                                <option value="especes">Espèces</option>
+                                <option value="mobile_money">Mobile Money (Wave / Orange)</option>
+                                <option value="virement">Virement Bancaire</option>
+                                <option value="cheque">Chèque</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">N° de Pièce / Facture</label>
+                            <input type="text" class="form-control" name="num_piece" placeholder="Ex: FACT-2026-99">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouvelle-depense')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouvelleDepense()">Enregistrer la Dépense</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVEAU CLIENT -->
+    <div class="modal-overlay" id="modal-nouveau-client">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Fiche Nouveau Client</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouveau-client')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouveau-client">
+                    <div class="form-group">
+                        <label class="form-label">Nom Complet / Raison Sociale</label>
+                        <input type="text" class="form-control" name="nom_complet" placeholder="Ex: Hôtel Le Fromager" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Type de Client</label>
+                            <select class="form-control" name="type_client">
+                                <option value="restaurant">Hôtel / Restaurant</option>
+                                <option value="revendeur">Revendeur / Supérette</option>
+                                <option value="grossiste">Grossiste / Marché</option>
+                                <option value="particulier">Particulier</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Téléphone</label>
+                            <input type="text" class="form-control" name="telephone" placeholder="+225 07 ...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Ville</label>
+                            <input type="text" class="form-control" name="ville" value="Diégonefla">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Plafond Crédit Autorisé (FCFA)</label>
+                            <input type="number" class="form-control" name="limite_credit" value="500000">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouveau-client')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouveauClient()">Enregistrer le Client</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL RÈGLEMENT CRÉANCE CLIENT -->
+    <div class="modal-overlay" id="modal-reglement-creance">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Encaissement de Créance Client</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-reglement-creance')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-reglement-creance">
+                    <input type="hidden" id="reglement-client-id">
+                    <div class="form-group">
+                        <label class="form-label">Client</label>
+                        <input type="text" class="form-control" id="reglement-client-nom" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Créance Actuelle Due</label>
+                        <input type="text" class="form-control" id="reglement-solde-du" readonly style="color: var(--danger); font-weight: bold;">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Montant Encaissé (FCFA)</label>
+                            <input type="number" class="form-control" id="reglement-montant" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" id="reglement-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mode de Règlement</label>
+                        <select class="form-control" id="reglement-mode">
+                            <option value="especes">Espèces</option>
+                            <option value="mobile_money">Mobile Money (Wave / Orange)</option>
+                            <option value="virement">Virement Bancaire</option>
+                            <option value="cheque">Chèque</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-reglement-creance')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitReglementCreance()">Valider l'Encaissement</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVEL ALIMENT -->
+    <div class="modal-overlay" id="modal-nouvel-aliment">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Ajout d'un Type d'Aliment</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouvel-aliment')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouvel-aliment">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Code Aliment</label>
+                            <input type="text" class="form-control" name="code" placeholder="Ex: ALIM-V-FIN2" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Catégorie</label>
+                            <select class="form-control" name="categorie">
+                                <option value="volaille">Volaille</option>
+                                <option value="lapin">Lapin</option>
+                                <option value="matiere_premiere">Matière Première</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nom de l'Aliment</label>
+                        <input type="text" class="form-control" name="nom" placeholder="Ex: Finition Volailles 2" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Stock Initial (kg)</label>
+                            <input type="number" class="form-control" name="stock_actuel_kg" value="500" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Seuil Minimal d'Alerte (kg)</label>
+                            <input type="number" class="form-control" name="seuil_alerte_kg" value="200" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Prix Unitaire Estimé (FCFA/kg)</label>
+                            <input type="number" class="form-control" name="prix_unitaire_kg" value="280">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Emplacement</label>
+                            <input type="text" class="form-control" name="emplacement" placeholder="Ex: Magasin A">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouvel-aliment')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouvelAliment()">Ajouter l'Aliment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL MOUVEMENT ALIMENT -->
+    <div class="modal-overlay" id="modal-mouvement-aliment">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Mouvement / Distribution d'Aliment</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-mouvement-aliment')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-mouvement-aliment">
+                    <div class="form-group">
+                        <label class="form-label">Aliment Concerné</label>
+                        <select class="form-control" id="mvt-aliment-select"></select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Type d'Opération</label>
+                            <select class="form-control" id="mvt-aliment-type">
+                                <option value="sortie_distribution">Distribution Quotidienne (Sortie)</option>
+                                <option value="entree_achat">Réception / Achat (Entrée)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Quantité (kg)</label>
+                            <input type="number" class="form-control" id="mvt-aliment-qte" min="1" value="50" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Lot Bénéficiaire / Emplacement</label>
+                        <input type="text" class="form-control" id="mvt-aliment-lot" placeholder="Ex: Lot Cobb 500 — Bâtiment 1">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-mouvement-aliment')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitMouvementAliment()">Enregistrer Mouvement</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVEL ARTICLE STOCK -->
+    <div class="modal-overlay" id="modal-nouvel-article">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Nouvel Article au Stock</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouvel-article')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouvel-article">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Code Article</label>
+                            <input type="text" class="form-control" name="code" placeholder="Ex: STK-DIV-01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Catégorie</label>
+                            <select class="form-control" name="categorie">
+                                <option value="aliment">Aliment</option>
+                                <option value="sante">Santé / Vétérinaire</option>
+                                <option value="materiel">Matériel & Équipement</option>
+                                <option value="emballage">Emballage / Alvéoles</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Désignation</label>
+                        <input type="text" class="form-control" name="designation" placeholder="Ex: Abreuvoirs automatiques" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Quantité en Stock</label>
+                            <input type="number" class="form-control" name="quantite_stock" value="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Unité</label>
+                            <input type="text" class="form-control" name="unite" value="unite" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Seuil Minimal d'Alerte</label>
+                            <input type="number" class="form-control" name="seuil_alerte" value="5">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Prix Unitaire (FCFA)</label>
+                            <input type="number" class="form-control" name="prix_unitaire" value="2500">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouvel-article')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouvelArticle()">Ajouter au Stock</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVEAU REPRODUCTEUR LAPIN -->
+    <div class="modal-overlay" id="modal-nouveau-reproducteur">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Nouveau Lapin Reproducteur</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouveau-reproducteur')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouveau-reproducteur">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Code / N° Tatouage</label>
+                            <input type="text" class="form-control" name="code_tatouage" placeholder="Ex: FB-04" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nom de l'animal</label>
+                            <input type="text" class="form-control" name="nom" placeholder="Ex: Sultan" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Race</label>
+                            <select class="form-control" name="race">
+                                <option value="Fauve de Bourgogne">Fauve de Bourgogne</option>
+                                <option value="Néo-Zélandais Blanc">Néo-Zélandais Blanc</option>
+                                <option value="Géant des Flandres">Géant des Flandres</option>
+                                <option value="Papillon Français">Papillon Français</option>
+                                <option value="Croisé Local">Croisé Local</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Sexe</label>
+                            <select class="form-control" name="sexe">
+                                <option value="femelle">Femelle (Lapine mère)</option>
+                                <option value="male">Mâle reproducteur</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">N° de Cage</label>
+                            <input type="text" class="form-control" name="cage_numero" placeholder="Ex: Cage M-04">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date d'Entrée</label>
+                            <input type="date" class="form-control" name="date_entree">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouveau-reproducteur')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouveauReproducteur()">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVELLE SAILLIE -->
+    <div class="modal-overlay" id="modal-nouvelle-saillie">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Enregistrement d'une Saillie (Reproduction)</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouvelle-saillie')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouvelle-saillie">
+                    <div class="form-group">
+                        <label class="form-label">Femelle (Lapine mère)</label>
+                        <select class="form-control" id="saillie-femelle-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mâle reproducteur</label>
+                        <select class="form-control" id="saillie-male-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date de Saillie</label>
+                        <input type="date" class="form-control" id="saillie-date" required>
+                    </div>
+                    <p style="font-size: 0.8rem; color: #b45309; background: #fffbeb; padding: 0.5rem; border-radius: 4px;">
+                        ℹ La date prévisionnelle de mise bas sera automatiquement calculée à J+31 (durée moyenne de gestation cunicole).
+                    </p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouvelle-saillie')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouvelleSaillie()">Enregistrer Saillie</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVELLE INTERVENTION SANTÉ -->
+    <div class="modal-overlay" id="modal-nouvelle-intervention-sante">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Enregistrement d'un Acte Vétérinaire / Soin</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouvelle-intervention-sante')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-intervention-sante">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Espèce</label>
+                            <select class="form-control" name="espece">
+                                <option value="volaille">Volailles</option>
+                                <option value="lapin">Lapins</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Type d'Acte</label>
+                            <select class="form-control" name="type_intervention">
+                                <option value="vaccination">Vaccination</option>
+                                <option value="traitement">Traitement antibiotique</option>
+                                <option value="vermifuge">Vermifugation / Déparasitage</option>
+                                <option value="vitamines">Cure de vitamines / Antistress</option>
+                                <option value="desinfection">Désinfection & Vide sanitaire</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Lot ou Groupe Concerné</label>
+                        <input type="text" class="form-control" name="lot_nom" placeholder="Ex: Lot Cobb 500 Bâtiment 1">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Médicament / Produit Utilisé</label>
+                            <input type="text" class="form-control" name="nom_produit" placeholder="Ex: Newcastle Clon 30" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Posologie & Administration</label>
+                            <input type="text" class="form-control" name="posologie" placeholder="Ex: 1 dose / sujet dans l'eau">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" name="date_intervention" id="sante-date">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Délai d'Attente Viande/Œufs (jours)</label>
+                            <input type="number" class="form-control" name="delai_attente_jours" value="0">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouvelle-intervention-sante')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouvelleInterventionSante()">Enregistrer l'Acte</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NOUVEL UTILISATEUR -->
+    <div class="modal-overlay" id="modal-nouvel-utilisateur">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Création d'un Compte Utilisateur</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-nouvel-utilisateur')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-nouvel-utilisateur">
+                    <div class="form-group">
+                        <label class="form-label">Nom Complet</label>
+                        <input type="text" class="form-control" name="nom_complet" placeholder="Ex: M. Alain Gnahoré" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Identifiant de Connexion</label>
+                            <input type="text" class="form-control" name="identifiant" placeholder="Ex: agnahore" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mot de Passe Provisoire</label>
+                            <input type="password" class="form-control" name="mot_de_passe" value="123456" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Rôle Attribué (Voir Matrice CDC Section 6)</label>
+                        <select class="form-control" name="role">
+                            <option value="admin">Administrateur (Accès Total)</option>
+                            <option value="technique">Responsable Technique (Élevage / Santé / Aliments)</option>
+                            <option value="commercial">Responsable Commercial (Clients / Ventes)</option>
+                            <option value="comptable">Comptable (Finances / Dépenses)</option>
+                            <option value="consultation">Consultation (Lecture seule)</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="app.closeModal('modal-nouvel-utilisateur')">Annuler</button>
+                <button class="btn btn-primary" onclick="app.submitNouvelUtilisateur()">Créer le Compte</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS -->
+    <div id="toast-container"></div>
+
+    <!-- APPLICATION SCRIPTS -->
+    <script src="app.js"></script>
+</body>
+</html>
